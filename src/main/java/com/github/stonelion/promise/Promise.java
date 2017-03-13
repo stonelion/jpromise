@@ -1,4 +1,4 @@
-package io.slope.promise;
+package com.github.stonelion.promise;
 
 /**
  * io.ut.io.slope.promise 接口
@@ -16,11 +16,13 @@ public interface Promise<D> {
 
     Promise<D> then(DoneCallback<D> doneCallback);
 
+    Promise<D> then(FailCallback failCallback);
+
     Promise<D> then(DoneCallback<D> doneCallback, FailCallback failCallback);
 
-    <OUT> Promise<OUT> then(ChainDoneCallback<D,OUT> doneCallback);
+    <OUT> Promise<OUT> then(ChainDoneCallback<D, OUT> doneCallback);
 
-    <OUT> Promise<OUT> then(ChainDoneCallback<D,OUT> doneCallback, FailCallback failCallback);
+    <OUT> Promise<OUT> then(ChainDoneCallback<D, OUT> doneCallback, FailCallback failCallback);
 
     enum State {
         PENDING, REJECTED, RESOLVED

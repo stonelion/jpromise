@@ -1,14 +1,14 @@
-package io.slope.promise;
+package com.github.stonelion.promise;
 
 import javax.annotation.concurrent.ThreadSafe;
 
 @ThreadSafe
 public class PromiseImpl<D> implements Promise<D> {
-    private State state = State.PENDING;
+    protected volatile State state = State.PENDING;
 
-    private volatile DoneCallback<D> doneCallback;
+    protected volatile DoneCallback<D> doneCallback;
 
-    private volatile FailCallback failCallback;
+    protected volatile FailCallback failCallback;
 
     private final PromiseResult<D> resultCallback = new PromiseResult<D>() {
         @Override
@@ -105,11 +105,19 @@ public class PromiseImpl<D> implements Promise<D> {
         return this;
     }
 
+    @Override
+    public Promise<D> then(FailCallback failCallback) {
+        this.failCallback = failCallback;
+
+        triggerCall();
+        return this;
+    }
+
     public PromiseResult<D> getResultCallback() {
         return resultCallback;
     }
 
-    private void triggerCall() {
+    protected void triggerCall() {
         if (promiseCall != null) {
             try {
                 promiseCall.call(resultCallback);

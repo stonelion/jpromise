@@ -5,7 +5,7 @@ JPromise is a Java Promise library for java 7. It is similar to nodeJs's promise
 
 ```
   <dependency>
-      <groupId>io.slope</groupId>
+      <groupId>com.github.stonelion</groupId>
       <artifactId>promise</artifactId>
       <version>${version}</version>
   </dependency>

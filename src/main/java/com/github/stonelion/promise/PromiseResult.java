@@ -1,4 +1,4 @@
-package io.slope.promise;
+package com.github.stonelion.promise;
 
 public interface PromiseResult<D> {
 

@@ -1,4 +1,4 @@
-package io.slope.promise;
+package com.github.stonelion.promise;
 
 public class Precondition {
     public static <T> T checkNotNull(T reference) {
